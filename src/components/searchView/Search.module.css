@@ -1,0 +1,14 @@
+.search {
+  background-color: #333;
+}
+
+ul {
+  padding-inline-start: 0;
+  list-style: none;
+  margin: 1rem 1rem;
+}
+
+.title {
+  color: #fff;
+  text-align: center;
+}
