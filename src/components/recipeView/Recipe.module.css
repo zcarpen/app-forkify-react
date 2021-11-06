@@ -17,12 +17,20 @@
 }
 
 .mainTitle {
-  color: #fff;
+  color: orangered;
   font-size: 3.8rem;
   font-weight: 900;
   padding: 0 2rem;
   border: 1px dotted #fff;
   border-radius: 10px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.titleBackground {
+  background-color: #fff;
+  opacity: 0.75;
 }
 
 .header {
@@ -32,22 +40,29 @@
   align-items: center;
 }
 
+.btn__bookmark {
+  position: absolute;
+  background-color: orangered;
+  top: 2rem;
+  right: 2rem;
+  color: #fff;
+  padding: 1rem 3rem;
+}
+
+.btn__bookmark:hover {
+  cursor: pointer;
+}
+
+.main {
+  position: relative;
+}
+
 .ingredients {
   background-color: #333;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 5rem 7rem 5rem;
-}
-
-.listIngredients {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 3rem;
-  column-gap: 12rem;
-  font-size: 1.2rem;
-  font-weight: 600;
 }
 
 footer {

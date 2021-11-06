@@ -6,8 +6,15 @@ import Ingredient from "./Ingredient";
 const Recipe = () => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const [ingredients, setIngredients] = useState([]);
-  console.log(searchCtx);
   if (!searchCtx.recipe?.ingredients) return null;
+  console.log(searchCtx);
+  const addToBookmarks = () => {
+    console.log(searchCtx.recipe);
+    setSearchCtx({
+      ...searchCtx,
+      bookmarks: [...searchCtx.bookmarks, searchCtx.recipe],
+    });
+  };
 
   console.log(searchCtx.recipe.ingredients);
   return (
@@ -18,13 +25,18 @@ const Recipe = () => {
         }}
         className={classes.header}
       >
-        <h1 className={classes.mainTitle}>{searchCtx.recipe.title}</h1>
+        <div className={classes.titleBackground}>
+          <h1 className={classes.mainTitle}>{searchCtx.recipe.title}</h1>
+        </div>
       </header>
-      <main>
+      <main className={classes.main}>
         <section className={classes.ingredients}>
           <h3 className={classes.title}>Ingredients:</h3>
           <Ingredient />
         </section>
+        <button onClick={addToBookmarks} className={classes.btn__bookmark}>
+          Bookmark
+        </button>
       </main>
       <footer>
         <p className={classes.closingParagraph}>

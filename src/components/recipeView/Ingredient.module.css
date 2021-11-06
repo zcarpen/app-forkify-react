@@ -1,3 +1,12 @@
 li {
   color: white;
 }
+.listIngredients {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 3rem;
+  column-gap: 12rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}

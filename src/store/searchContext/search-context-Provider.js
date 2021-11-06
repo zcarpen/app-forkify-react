@@ -8,6 +8,7 @@ const SearchContextProvider = (props) => {
     pages: 1,
     page: 1,
     recipe: null,
+    bookmarks: [],
   });
   return (
     <searchContext.Provider value={[searchCtx, setSearchCtx]}>

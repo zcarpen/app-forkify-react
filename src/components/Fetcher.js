@@ -28,7 +28,6 @@ export const fetchingRecipe = async (input = 47746) => {
   );
 
   const { recipe } = await recipePromise.json();
-  console.log(recipe);
 
   return {
     image: recipe.image_url,
