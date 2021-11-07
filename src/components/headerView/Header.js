@@ -1,8 +1,7 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, useContext, Fragment, useEffect } from "react";
 import classes from "./Header.module.css";
 import searchContext from "../../store/searchContext/search-context";
 import fetchingResults from "../Fetcher";
-import SearchItem from "../searchView/SearchItem";
 import Bookmarks from "./Bookmarks";
 
 const Header = ({ getQuery }) => {
@@ -23,8 +22,16 @@ const Header = ({ getQuery }) => {
     });
   };
 
+  useEffect(() => {
+    const localBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    setSearchCtx({
+      ...searchCtx,
+      bookmarks: localBookmarks,
+    });
+  }, []);
+
   return (
-    <React.Fragment>
+    <Fragment>
       <div className={classes.header}>
         <h1 className={classes.mainTitle}>
           <span className={classes.welcome}>Welcome to </span>
@@ -46,7 +53,7 @@ const Header = ({ getQuery }) => {
         </h4>
       </div>
       <Bookmarks />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

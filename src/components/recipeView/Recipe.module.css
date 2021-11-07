@@ -29,6 +29,7 @@
 }
 
 .titleBackground {
+  /* overflow: hidden; */
   background-color: #fff;
   opacity: 0.75;
 }
@@ -55,6 +56,7 @@
 
 .main {
   position: relative;
+  border-left: 1px solid #ddd;
 }
 
 .ingredients {

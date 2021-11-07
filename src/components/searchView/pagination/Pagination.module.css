@@ -22,3 +22,18 @@ span {
   justify-content: center;
   align-items: center;
 }
+
+.pageNumber {
+  border-radius: 50%;
+  align-self: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 0 2px;
+}
+
+.current {
+  background-color: #ddd;
+  color: #333;
+  font-weight: 900;
+}

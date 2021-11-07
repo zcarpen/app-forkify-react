@@ -5,8 +5,10 @@ import searchContext from "../../store/searchContext/search-context";
 
 const SearchItem = ({ renderBookmarks, item }) => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
+  const recipeID = item.id ? item.id : item.recipeID;
+
   const fetchItem = async (e) => {
-    const recipeID = item.id ? item.id : item.recipeID;
+    if (e.target.textContent === "delete") return;
     const recipe = await fetchingRecipe(recipeID);
     setSearchCtx({
       ...searchCtx,
@@ -20,11 +22,16 @@ const SearchItem = ({ renderBookmarks, item }) => {
       bookmarks.findIndex((bookmark) => +bookmark.id === +item.id),
       1
     );
+    setSearchCtx({
+      ...searchCtx,
+      bookmarks: searchCtx.bookmarks,
+    });
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   };
 
-  const bookmark = renderBookmarks ? <button>delete</button> : null;
+  // const bookmark = renderBookmarks ? <button>delete</button> : null;
   return (
-    <li id={item.id} onClick={fetchItem}>
+    <li key={recipeID} onClick={fetchItem}>
       <img alt="recipe" className={classes.itemImage} src={item.image} />
       <div className={classes.itemContainer}>
         <div className={classes.text}>

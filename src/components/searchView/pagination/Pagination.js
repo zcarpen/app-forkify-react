@@ -5,6 +5,26 @@ import searchContext from "../../../store/searchContext/search-context";
 const Pagination = () => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const pages = Array.from({ length: searchCtx.pages }, (_, i) => i + 1);
+  const currentPage = searchCtx.page;
+  const totalPages = searchCtx.pages;
+
+  const pagesJSX = pages.map((page) => {
+    let current = false;
+    if (page === currentPage) {
+      current = true;
+    }
+    console.log(current);
+    return (
+      <span
+        className={`${classes.pageNumber} ${current ? classes.current : ""}`}
+        id={page}
+        key={page}
+      >
+        {page}
+      </span>
+    );
+  });
+
   let pagesString = "";
   pages.forEach((page) => (pagesString += ` ${page}`));
   const nextPage = () => {
@@ -22,11 +42,11 @@ const Pagination = () => {
 
   return (
     <div className={classes.pagination}>
-      {(searchCtx.page > 1 && (
-        <button onClick={prevPage}>prev page</button>
-      )) || <button>..........</button>}
-      <span>{pagesString}</span>
-      {(searchCtx.page < searchCtx.pages && (
+      {(currentPage > 1 && <button onClick={prevPage}>prev page</button>) || (
+        <button>..........</button>
+      )}
+      {pagesJSX}
+      {(currentPage < totalPages && (
         <button onClick={nextPage}>next page</button>
       )) || <button>..........</button>}
     </div>

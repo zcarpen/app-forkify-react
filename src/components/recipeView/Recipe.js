@@ -1,22 +1,29 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import classes from "./Recipe.module.css";
 import searchContext from "../../store/searchContext/search-context";
 import Ingredient from "./Ingredient";
 
 const Recipe = () => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
-  const [ingredients, setIngredients] = useState([]);
   if (!searchCtx.recipe?.ingredients) return null;
-  console.log(searchCtx);
   const addToBookmarks = () => {
-    console.log(searchCtx.recipe);
+    // Checking if a bookmark is already stored:
+
+    const bookmarkAlreadyExists =
+      searchCtx.bookmarks.findIndex(
+        (bookmark) => bookmark.id === searchCtx.recipe.id
+      ) !== -1;
+    if (bookmarkAlreadyExists) return;
+
+    // adding new bookmark:
     setSearchCtx({
       ...searchCtx,
       bookmarks: [...searchCtx.bookmarks, searchCtx.recipe],
     });
+    const bookmarks = [...searchCtx.bookmarks, searchCtx.recipe];
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   };
 
-  console.log(searchCtx.recipe.ingredients);
   return (
     <div className={classes.recipe}>
       <header

@@ -6,7 +6,7 @@ import Pagination from "./pagination/Pagination";
 import searchContext from "../../store/searchContext/search-context";
 
 const Search = () => {
-  const [searchCtx, setSearchCtx] = useContext(searchContext);
+  const [searchCtx] = useContext(searchContext);
   const start = (searchCtx.page - 1) * 10;
   const end = searchCtx.page * 10;
 

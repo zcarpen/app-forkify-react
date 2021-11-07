@@ -7,7 +7,7 @@ import SearchContextProvider from "./store/searchContext/search-context-Provider
 import searchContext from "./store/searchContext/search-context";
 
 function App() {
-  const [searchCtx, setSearchCtx] = useState(searchContext);
+  const [searchCtx] = useState(searchContext);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   return (

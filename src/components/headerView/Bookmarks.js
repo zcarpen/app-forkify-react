@@ -4,7 +4,7 @@ import React, { useContext, useState } from "react";
 import classes from "./Bookmarks.module.css";
 
 const Bookmarks = () => {
-  const [searchCtx, setSearchCtx] = useContext(searchContext);
+  const [searchCtx] = useContext(searchContext);
   const [renderBookmarks, setRenderBookmarks] = useState(false);
 
   const renderBookmarksHandler = () => {
@@ -19,7 +19,6 @@ const Bookmarks = () => {
         renderBookmarks={renderBookmarks}
         item={item}
         key={item.recipeID}
-        recipeID={item.recipeID}
       />
     );
   });
@@ -33,7 +32,7 @@ const Bookmarks = () => {
         Bookmarked Recipes
       </button>
       {(searchCtx.bookmarks.length > 0 && renderBookmarks && (
-        <ul>{listItems}</ul>
+        <ul className={classes.list}>{listItems}</ul>
       )) ||
         (renderBookmarks && (
           <p className={classes.errorMessage}>No bookmarks yet.</p>
