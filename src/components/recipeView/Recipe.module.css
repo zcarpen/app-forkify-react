@@ -97,3 +97,9 @@ footer {
 .directions:hover {
   background-color: #ff8400;
 }
+
+/* @media (max-width: 115rem) {
+  .mainTitle {
+    font-size: 3.2rem;
+  }
+} */

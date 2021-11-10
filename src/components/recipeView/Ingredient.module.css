@@ -1,5 +1,7 @@
-li {
+.ingredient {
   color: white;
+  display: flex;
+  justify-content: flex-start;
 }
 .listIngredients {
   list-style: none;

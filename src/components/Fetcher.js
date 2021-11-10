@@ -1,25 +1,25 @@
-// const [recipeData, setRecipeData] = useState([]);
-// const [appCtx, setAppCtx] = useContext(appContext);
-// const [search, setSearch] = useState("");
-
 const fetchingResults = async (input) => {
-  if (input === "") return;
-  console.log(input);
-  const result = await fetch(
-    `https://forkify-api.herokuapp.com/api/search?q=${input}`
-  );
-  const recipeData = await result.json();
-  const { recipes } = recipeData;
-  const recipesArr = recipes.map((recipe) => {
-    return {
-      image: recipe.image_url,
-      publisher: recipe.publisher,
-      recipeID: recipe.recipe_id,
-      title: recipe.title,
-      source: recipe.source_url,
-    };
-  });
-  return recipesArr;
+  try {
+    const result = await fetch(
+      `https://forkify-api.herokuapp.com/api/search?q=${input}`
+    );
+    if (!result.ok) throw new Error("search does not exist");
+    const recipeData = await result.json();
+    const { recipes } = recipeData;
+    const recipesArr = recipes.map((recipe) => {
+      return {
+        image: recipe.image_url,
+        publisher: recipe.publisher,
+        recipeID: recipe.recipe_id,
+        title: recipe.title,
+        source: recipe.source_url,
+      };
+    });
+    return recipesArr;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 };
 
 export const fetchingRecipe = async (input = 47746) => {

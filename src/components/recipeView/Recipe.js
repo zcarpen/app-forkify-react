@@ -3,7 +3,7 @@ import classes from "./Recipe.module.css";
 import searchContext from "../../store/searchContext/search-context";
 import Ingredient from "./Ingredient";
 
-const Recipe = () => {
+const Recipe = ({ setBookmarkError }) => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   if (!searchCtx.recipe?.ingredients) return null;
   const addToBookmarks = () => {
@@ -13,7 +13,14 @@ const Recipe = () => {
       searchCtx.bookmarks.findIndex(
         (bookmark) => bookmark.id === searchCtx.recipe.id
       ) !== -1;
-    if (bookmarkAlreadyExists) return;
+    if (bookmarkAlreadyExists) {
+      setBookmarkError(true);
+      setTimeout(() => {
+        console.log("erase the error!");
+        setBookmarkError(false);
+      }, 3000);
+      return;
+    }
 
     // adding new bookmark:
     setSearchCtx({
@@ -51,7 +58,11 @@ const Recipe = () => {
           <strong>{" " + searchCtx.recipe.publisher}</strong>. Please check out
           directions at their website.
         </p>
-        <a className={classes.directions} href={searchCtx.recipe.sourceURL}>
+        <a
+          className={classes.directions}
+          target={"_blank"}
+          href={searchCtx.recipe.sourceURL}
+        >
           Directions
         </a>
       </footer>

@@ -32,8 +32,10 @@ const SearchItem = ({ renderBookmarks, item }) => {
   // const bookmark = renderBookmarks ? <button>delete</button> : null;
   return (
     <li key={recipeID} onClick={fetchItem}>
-      <img alt="recipe" className={classes.itemImage} src={item.image} />
       <div className={classes.itemContainer}>
+        <div className={classes.imageContainer}>
+          <img alt="recipe" className={classes.itemImage} src={item.image} />
+        </div>
         <div className={classes.text}>
           <h4>{item.title}</h4>
         </div>

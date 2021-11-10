@@ -6,13 +6,14 @@
   border: solid 1px #333;
   border-left: none;
   justify-items: center;
-  padding-right: 0.5rem;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
+}
+
+.imageContainer {
+  height: 4rem;
 }
 
 .itemImage {
-  border: solid 1px #333;
   border-right: none;
   width: 4rem;
   height: 4rem;
@@ -20,16 +21,22 @@
   border-bottom-left-radius: 10px;
   overflow: visible;
 }
+
+h4 {
+  margin: 0;
+}
+
 li {
   display: flex;
+  justify-content: center;
 }
 
 li:hover {
   cursor: pointer;
 }
 
-h4 {
-  margin: 0;
+.title {
+  margin: none;
 }
 
 .text {
@@ -39,7 +46,7 @@ h4 {
   width: 100%;
   text-align: center;
   color: #000;
-  padding-right: 0 5rem;
+  padding: 0 1rem;
 }
 
 .deleteBookmark {

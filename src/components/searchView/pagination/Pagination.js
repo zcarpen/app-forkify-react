@@ -13,7 +13,6 @@ const Pagination = () => {
     if (page === currentPage) {
       current = true;
     }
-    console.log(current);
     return (
       <span
         className={`${classes.pageNumber} ${current ? classes.current : ""}`}

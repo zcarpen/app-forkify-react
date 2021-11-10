@@ -17,3 +17,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@media (max-width: 115rem) {
+  html {
+    font-size: 56.25%;
+  }
+  .mainTitle {
+    font-size: 3.2rem;
+  }
+  .bookmarks {
+    max-width: 25rem;
+    max-height: 19rem;
+  }
+}

@@ -4,7 +4,9 @@ import searchContext from "../../store/searchContext/search-context";
 import fetchingResults from "../Fetcher";
 import Bookmarks from "./Bookmarks";
 
-const Header = ({ getQuery }) => {
+const Header = ({ bookmarkError }) => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isValidSearch, setIsValidSearch] = useState(true);
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const [query, setQuery] = useState("");
   const queryHandler = (e) => {
@@ -13,13 +15,25 @@ const Header = ({ getQuery }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const results = await fetchingResults(query);
-    setSearchCtx({
-      ...searchCtx,
-      query: query,
-      results: results,
-      pages: Math.ceil(results.length / 10),
-    });
+    try {
+      const results = await fetchingResults(query);
+      setIsValidSearch(true);
+      setSearchCtx({
+        ...searchCtx,
+        query: query,
+        results: results,
+        pages: Math.ceil(results.length / 10),
+      });
+    } catch {
+      if (e.target[0].value === "") {
+        setErrorMessage("Invalid (empty) input");
+        setIsValidSearch(false);
+      }
+      if (e.target[0].value !== "") {
+        setIsValidSearch(false);
+        setErrorMessage(`'${e.target[0].value}' could not be found`);
+      }
+    }
   };
 
   useEffect(() => {
@@ -33,16 +47,23 @@ const Header = ({ getQuery }) => {
   return (
     <Fragment>
       <div className={classes.header}>
+        {(!isValidSearch || bookmarkError) && (
+          <p className={classes.error}>
+            {bookmarkError ? "Recipe is already bookmarked" : errorMessage}
+          </p>
+        )}
         <h1 className={classes.mainTitle}>
           <span className={classes.welcome}>Welcome to </span>
           <span className={classes.name}>Recipe Finder</span>
         </h1>
         <form className={classes.form} onSubmit={submitHandler}>
           <input
-            className={classes.input}
+            className={`${classes.input} ${
+              !isValidSearch ? classes.inputError : ""
+            }`}
             onChange={queryHandler}
             id="searchInput"
-            placeholder="pizza"
+            placeholder={isValidSearch ? "pizza" : "ERROR"}
           />
           <button type="submit" className={classes.searchButton}>
             Search
