@@ -24,8 +24,6 @@ const Pagination = () => {
     );
   });
 
-  let pagesString = "";
-  pages.forEach((page) => (pagesString += ` ${page}`));
   const nextPage = () => {
     setSearchCtx({
       ...searchCtx,

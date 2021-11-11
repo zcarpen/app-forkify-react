@@ -7,6 +7,7 @@ const Bookmarks = () => {
   const [searchCtx] = useContext(searchContext);
   const [renderBookmarks, setRenderBookmarks] = useState(false);
 
+  // toggles the bookmark container
   const renderBookmarksHandler = () => {
     renderBookmarks === false
       ? setRenderBookmarks(true)
@@ -27,6 +28,8 @@ const Bookmarks = () => {
       >
         Bookmarked Recipes
       </button>
+
+      {/* renders bookmarks if it's not empty OR if it is empty, it renders a message */}
       {(searchCtx.bookmarks.length > 0 && renderBookmarks && (
         <ul className={classes.list}>{listItems}</ul>
       )) ||

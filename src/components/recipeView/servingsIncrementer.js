@@ -1,6 +1,5 @@
 const servingsIncrementer = (ingredient) => {
   const Fraction = require("fractional").Fraction;
-  // console.log(new Fraction(0.333333));
   const arrayOfIngredients = ingredient.split(" ");
   // incrementing servings:
 
@@ -22,9 +21,12 @@ const servingsIncrementer = (ingredient) => {
   ) {
     const fracToDecimal = eval(arrayOfIngredients[0]);
     const frac = new Fraction(fracToDecimal);
+
+    // This conditional is for repeating decimals only:
     if (frac.toString().length > 8) {
       return ingredient;
     }
+
     return frac.toString() + " " + arrayOfIngredients.slice(1).join(" ");
   }
 

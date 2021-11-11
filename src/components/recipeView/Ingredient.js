@@ -19,15 +19,4 @@ const Ingredient = () => {
   return <ul className={classes.listIngredients}>{listOfIngredients}</ul>;
 };
 
-// const ingredient = "1 1/2 teaspoons curry powder"
-
-// const arrayOfIngredients = ingredient.split(' ');
-// console.log(arrayOfIngredients)
-// const decimaledNumber = Number(arrayOfIngredients[0])
-// const fracToDecimal = eval(arrayOfIngredients[1])
-// if (!isFinite(arrayOfIngredients[1][0])) {
-//   console.log('whoops')
-// }
-// console.log(decimaledNumber + fracToDecimal)
-
 export default Ingredient;

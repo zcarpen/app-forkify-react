@@ -8,13 +8,15 @@ const Recipe = ({ setBookmarkError }) => {
   if (!searchCtx.recipe?.ingredients) return null;
   const addToBookmarks = () => {
     // Checking if a bookmark is already stored:
-
     const bookmarkAlreadyExists =
       searchCtx.bookmarks.findIndex(
         (bookmark) => bookmark.id === searchCtx.recipe.id
       ) !== -1;
+
+    // If bookmark already exists:
     if (bookmarkAlreadyExists) {
       setBookmarkError(true);
+      // Only renders the error for a bookmark for 3 seconds
       setTimeout(() => {
         console.log("erase the error!");
         setBookmarkError(false);
@@ -63,7 +65,7 @@ const Recipe = ({ setBookmarkError }) => {
           target={"_blank"}
           href={searchCtx.recipe.sourceURL}
         >
-          Directions
+          Instructions
         </a>
       </footer>
     </div>

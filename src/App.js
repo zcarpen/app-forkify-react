@@ -5,14 +5,11 @@ import Recipe from "./components/recipeView/Recipe";
 import React, { useState } from "react";
 import SearchContextProvider from "./store/searchContext/search-context-Provider";
 import searchContext from "./store/searchContext/search-context";
-import { useEffect } from "react/cjs/react.development";
 
 function App() {
   const [searchCtx] = useState(searchContext);
   const [bookmarkError, setBookmarkError] = useState(false);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
-
-  console.log(bookmarkError);
 
   return (
     <SearchContextProvider>

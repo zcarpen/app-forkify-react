@@ -9,32 +9,6 @@ const Header = ({ bookmarkError }) => {
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const [query, setQuery] = useState("");
-  const queryHandler = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const results = await fetchingResults(query);
-      setIsValidSearch(true);
-      setSearchCtx({
-        ...searchCtx,
-        query: query,
-        results: results,
-        pages: Math.ceil(results.length / 10),
-      });
-    } catch {
-      if (e.target[0].value === "") {
-        setErrorMessage("Invalid (empty) input");
-        setIsValidSearch(false);
-      }
-      if (e.target[0].value !== "") {
-        setIsValidSearch(false);
-        setErrorMessage(`'${e.target[0].value}' could not be found`);
-      }
-    }
-  };
 
   useEffect(() => {
     const localBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
@@ -43,6 +17,41 @@ const Header = ({ bookmarkError }) => {
       bookmarks: localBookmarks,
     });
   }, []);
+
+  const queryHandler = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const lowerCaseQuery = query.toLowerCase();
+      const results = await fetchingResults(lowerCaseQuery);
+      setIsValidSearch(true);
+      setSearchCtx({
+        ...searchCtx,
+        query: lowerCaseQuery,
+        results: results,
+        page: 1,
+        pages: Math.ceil(results.length / 10),
+      });
+      setQuery("");
+    } catch {
+      // rendered error depends on the search query:
+
+      // if search was truly empty:
+      if (e.target[0].value === "") {
+        setErrorMessage("Invalid (empty) input");
+        setIsValidSearch(false);
+      }
+
+      // if search was not empty, but also not found:
+      if (e.target[0].value !== "") {
+        setIsValidSearch(false);
+        setErrorMessage(`'${e.target[0].value}' could not be found`);
+      }
+    }
+  };
 
   return (
     <Fragment>
@@ -63,7 +72,8 @@ const Header = ({ bookmarkError }) => {
             }`}
             onChange={queryHandler}
             id="searchInput"
-            placeholder={isValidSearch ? "pizza" : "ERROR"}
+            placeholder={isValidSearch ? "(pizza, potato, chicken..)" : "ERROR"}
+            value={query}
           />
           <button type="submit" className={classes.searchButton}>
             Search

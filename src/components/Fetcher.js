@@ -1,3 +1,4 @@
+// Fetches a list of recipes that match a given query:
 const fetchingResults = async (input) => {
   try {
     const result = await fetch(
@@ -22,6 +23,7 @@ const fetchingResults = async (input) => {
   }
 };
 
+// Fetches a specific recipe from the search using the searchItems' ID:
 export const fetchingRecipe = async (input = 47746) => {
   const recipePromise = await fetch(
     `https://forkify-api.herokuapp.com/api/get?rId=${input}`
