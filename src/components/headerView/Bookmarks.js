@@ -2,10 +2,12 @@ import searchContext from "../../store/searchContext/search-context";
 import SearchItem from "../searchView/SearchItem";
 import React, { useContext, useState } from "react";
 import classes from "./Bookmarks.module.css";
+import { useMediaQuery } from "@mui/material";
 
 const Bookmarks = () => {
   const [searchCtx] = useContext(searchContext);
   const [renderBookmarks, setRenderBookmarks] = useState(false);
+  const isTablet = useMediaQuery("(max-width: 1100px)");
 
   // toggles the bookmark container
   const renderBookmarksHandler = () => {
@@ -31,7 +33,11 @@ const Bookmarks = () => {
   }
 
   return (
-    <section className={classes.bookmarks}>
+    <section
+      className={`${classes.bookmarks} ${
+        isTablet ? classes.bookmarksTablet : ""
+      }`}
+    >
       <button
         onClick={renderBookmarksHandler}
         className={classes.bookmarkedRecipes}
@@ -41,7 +47,13 @@ const Bookmarks = () => {
 
       {/* renders bookmarks if it's not empty OR if it is empty, it renders a message */}
       {(searchCtx.bookmarks.length > 0 && renderBookmarks && (
-        <ul className={classes.list}>{listItems}</ul>
+        <ul
+          className={`${classes.list} ${
+            isTablet ? classes.listBookmarksTablet : ""
+          }`}
+        >
+          {listItems}
+        </ul>
       )) ||
         (renderBookmarks && (
           <p className={classes.errorMessage}>No bookmarks yet.</p>

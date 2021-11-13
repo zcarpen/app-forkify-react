@@ -10,7 +10,7 @@ const Header = ({ bookmarkError }) => {
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const [query, setQuery] = useState("");
-  const isTablet = useMediaQuery("(max-width: 1024px)");
+  const isTablet = useMediaQuery("(max-width: 1100px)");
 
   useEffect(() => {
     const localBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
@@ -64,12 +64,18 @@ const Header = ({ bookmarkError }) => {
           </p>
         )}
         <h1 className={classes.mainTitle}>
-          <span className={classes.welcome}>Welcome to </span>
-          {isTablet ? (
-            <span className={classes.nameTablet}>Recipe Finder</span>
-          ) : (
-            <span className={classes.name}>Recipe Finder</span>
-          )}
+          <span
+            className={`${classes.welcome} ${
+              isTablet ? classes.welcomeTablet : ""
+            }`}
+          >
+            Welcome to{" "}
+          </span>
+          <span
+            className={`${classes.name} ${isTablet ? classes.nameTablet : ""}`}
+          >
+            Recipe Finder
+          </span>
         </h1>
         <form className={classes.form} onSubmit={submitHandler}>
           <input
@@ -85,7 +91,11 @@ const Header = ({ bookmarkError }) => {
             Search
           </button>
         </form>
-        <h4 className={classes.instruction}>
+        <h4
+          className={`${classes.instruction} ${
+            isTablet ? classes.instructionTablet : ""
+          }`}
+        >
           Search for any keyword to find a recipe that you'd like to try!
         </h4>
       </div>

@@ -22,10 +22,6 @@
   overflow: visible;
 }
 
-h4 {
-  margin: 0;
-}
-
 li {
   display: flex;
   justify-content: center;
@@ -36,7 +32,17 @@ li:hover {
 }
 
 .title {
-  margin: none;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.titleTablet {
+  font-size: 0.8rem;
+}
+
+.titleBookmarkTablet {
+  font-size: 0.7rem;
+  padding: 0;
 }
 
 .text {
@@ -59,6 +65,11 @@ li:hover {
   align-items: center;
   justify-content: center;
   color: #fff;
+}
+
+.deleteBookmarkTablet {
+  font-size: 0.6rem;
+  margin-left: 0;
 }
 
 .deleteBookmark:hover {

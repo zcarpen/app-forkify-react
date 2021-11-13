@@ -34,8 +34,13 @@
   color: #666;
   letter-spacing: 2px;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 1rem;
   /* box-shadow: 5px 5px 5px #000; */
+}
+
+.instructionTablet {
+  font-size: 0.8rem;
+  padding: 0.25rem 1rem;
 }
 
 .searchButton {
@@ -93,4 +98,8 @@
 
 .welcome {
   color: #000;
+}
+
+.welcomeTablet {
+  font-size: 1.6rem;
 }

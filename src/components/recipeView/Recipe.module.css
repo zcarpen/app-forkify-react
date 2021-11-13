@@ -28,6 +28,10 @@
   margin: 0;
 }
 
+.mainTitleTablet {
+  font-size: 3.2rem;
+}
+
 .titleBackground {
   /* overflow: hidden; */
   background-color: #fff;

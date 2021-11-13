@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import classes from "./Recipe.module.css";
 import searchContext from "../../store/searchContext/search-context";
 import Ingredient from "./Ingredient";
+import { useMediaQuery } from "@mui/material";
 
 const Recipe = ({ setBookmarkError }) => {
   const [searchCtx, setSearchCtx] = useContext(searchContext);
+  const isTablet = useMediaQuery("(max-width: 1100px)");
   if (!searchCtx.recipe?.ingredients) return null;
   const addToBookmarks = () => {
     // Checking if a bookmark is already stored:
@@ -42,7 +44,13 @@ const Recipe = ({ setBookmarkError }) => {
         className={classes.header}
       >
         <div className={classes.titleBackground}>
-          <h1 className={classes.mainTitle}>{searchCtx.recipe.title}</h1>
+          <h1
+            className={`${classes.mainTitle} ${
+              isTablet ? classes.mainTitleTablet : ""
+            }`}
+          >
+            {searchCtx.recipe.title}
+          </h1>
         </div>
       </header>
       <main className={classes.main}>
