@@ -14,11 +14,21 @@ const Bookmarks = () => {
       : setRenderBookmarks(false);
   };
 
-  const listItems = searchCtx.bookmarks.map((item) => {
-    return (
-      <SearchItem renderBookmarks={renderBookmarks} item={item} key={item.id} />
-    );
-  });
+  // gaurd clause to ensure that searchCtx.bookmarks is not empty:
+
+  let listItems;
+
+  if (searchCtx.bookmarks.length && Array.isArray(searchCtx.bookmarks)) {
+    listItems = searchCtx.bookmarks.map((item) => {
+      return (
+        <SearchItem
+          renderBookmarks={renderBookmarks}
+          item={item}
+          key={item.id}
+        />
+      );
+    });
+  }
 
   return (
     <section className={classes.bookmarks}>

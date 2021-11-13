@@ -63,6 +63,7 @@ const Recipe = ({ setBookmarkError }) => {
         <a
           className={classes.directions}
           target={"_blank"}
+          rel="noreferrer"
           href={searchCtx.recipe.sourceURL}
         >
           Instructions

@@ -3,12 +3,14 @@ import classes from "./Header.module.css";
 import searchContext from "../../store/searchContext/search-context";
 import fetchingResults from "../Fetcher";
 import Bookmarks from "./Bookmarks";
+import { useMediaQuery } from "@mui/material";
 
 const Header = ({ bookmarkError }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isValidSearch, setIsValidSearch] = useState(true);
   const [searchCtx, setSearchCtx] = useContext(searchContext);
   const [query, setQuery] = useState("");
+  const isTablet = useMediaQuery("(max-width: 1024px)");
 
   useEffect(() => {
     const localBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
@@ -63,7 +65,11 @@ const Header = ({ bookmarkError }) => {
         )}
         <h1 className={classes.mainTitle}>
           <span className={classes.welcome}>Welcome to </span>
-          <span className={classes.name}>Recipe Finder</span>
+          {isTablet ? (
+            <span className={classes.nameTablet}>Recipe Finder</span>
+          ) : (
+            <span className={classes.name}>Recipe Finder</span>
+          )}
         </h1>
         <form className={classes.form} onSubmit={submitHandler}>
           <input
