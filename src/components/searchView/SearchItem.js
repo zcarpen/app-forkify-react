@@ -31,7 +31,6 @@ const SearchItem = ({ renderBookmarks, item }) => {
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   };
 
-  // const bookmark = renderBookmarks ? <button>delete</button> : null;
   return (
     <li key={recipeID} onClick={fetchItem}>
       <div className={classes.itemContainer}>

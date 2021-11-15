@@ -16,7 +16,7 @@ const Header = ({ bookmarkError }) => {
     const localBookmarks = JSON.parse(localStorage.getItem("bookmarks"));
     setSearchCtx({
       ...searchCtx,
-      bookmarks: localBookmarks,
+      bookmarks: localBookmarks ? localBookmarks : [],
     });
   }, []);
 

@@ -18,21 +18,13 @@ const Bookmarks = () => {
 
   // gaurd clause to ensure that searchCtx.bookmarks is not empty:
 
-  let listItems;
-
-  if (searchCtx.bookmarks.length && Array.isArray(searchCtx.bookmarks)) {
-    listItems = searchCtx.bookmarks.map((item) => {
-      return (
-        <SearchItem
-          renderBookmarks={renderBookmarks}
-          item={item}
-          key={item.id}
-        />
-      );
-    });
-  }
-
+  const listItems = searchCtx.bookmarks.map((item) => {
+    return (
+      <SearchItem renderBookmarks={renderBookmarks} item={item} key={item.id} />
+    );
+  });
   return (
+    // <div></div>
     <section
       className={`${classes.bookmarks} ${
         isTablet ? classes.bookmarksTablet : ""
